@@ -3,6 +3,7 @@
  **/
 
 /* Global Styles */
+/* @import "~quill/dist/quill.core.css" */
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic|IBM+Plex+Mono|Poppins');
 
 * {
@@ -125,6 +126,7 @@ div.sidebar ul li:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .master-detail-element {
@@ -132,6 +134,8 @@ div.sidebar ul li:hover {
   margin: 10px 0px;
   padding: 20px;
   border: 2px dashed grey;
+
+
 }
 
 .sidebar {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import NoteContainer from './NoteContainer';
+// import ReactQuill from 'react-quill'
+
 
 const NotesURL = 'http://localhost:3000/api/v1/notes'
 
@@ -28,29 +30,26 @@ class App extends Component {
      })
    }
 
-   createNote = () => {
+   createNote = (e) => {
      let notePlaceholder = {
-       body: 'placeholder',
-       title: 'default',
-       user: {
-         id: 1,
-         name: 'kendallstephens'
-       }
+       title: 'Add a title',
+       body: 'Add a note',
+       user_id: 1
      }
      this.postNewNote(NotesURL, notePlaceholder)
-     .then(newNote => this.setState({
-       notes: [newNote, ...this.state.notes],
-       selectedNote: newNote
+     .then(notePlaceholder => this.setState({
+       notes: [notePlaceholder, ...this.state.notes],
+       selectedNote: notePlaceholder
      }))
    }
 
-   postNewNote = (NotesURL, newNote) => {
+   postNewNote = (NotesURL, notePlaceholder) => {
     return fetch(NotesURL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json',
                 'Accept': 'application/json'
               },
-      body: JSON.stringify(newNote)
+      body: JSON.stringify(notePlaceholder)
     }).then(res => res.json())
    
   }
@@ -75,14 +74,13 @@ class App extends Component {
     body: JSON.stringify(selectedNote)
     }).then(res => res.json())
     .then(note => {
-      const updatedNotes = this.state.notes.map(n => n.id == note.id ? note: n)
-      this.setState({notes: updatedNotes})
+      const updatedNotes = this.state.notes.map(n => n.id === note.id ? note: n)
+      this.setState({notes: updatedNotes, editNote: false})
     })
     
   }
 
   handleSearch = (value) => {
-    // let keyword = e.target.value;
     this.setState({filteredNotes: value})
   }
 
@@ -91,8 +89,6 @@ class App extends Component {
   }
 
   handleRemoveNote = (note) => {
-    // console.log(note)
-    // e.stopPropagation()
     this.setState((prevState) =>({
       selectedNote: prevState.notes.filter((n) => n !== note),
       notes: prevState.notes.filter((n) => n !== note)
@@ -102,7 +98,7 @@ class App extends Component {
 
   }
 
-  deleteNote = (note, editNote) => {
+  deleteNote = (note) => {
     console.log(note)
     fetch(`http://localhost:3000/api/v1/notes/${note}`, {
       method: 'DELETE'

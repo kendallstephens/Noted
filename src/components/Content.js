@@ -13,7 +13,7 @@ import Instructions from './Instructions';
 class Content extends Component {
   
   renderContent = () => {
-    const {selectedNote, handleClickEdit, editNote, handleEditSave,  handleCancelEdit, handleRemoveNote} = this.props
+    const {selectedNote, handleClickEdit, editNote, handleEditSave, handleCancelEdit, handleRemoveNote} = this.props
     if (editNote)  {
       return <NoteEditor 
       editNote = {editNote}

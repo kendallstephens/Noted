@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+// import ReactQuill from 'react-quill'
+// import 'react-quill/dist/quill.snow.css';
+
 
 class NoteEditor extends Component {
 
@@ -8,8 +11,11 @@ class NoteEditor extends Component {
     id: this.props.selectedNote.id
   }
 
+  
+  
+
   handleEdit = (e) => {
-    const { target: {value, name} } = e
+    // const { target: {value, name} } = e
     this.setState({
       [e.target.name]: e.target.value
 
@@ -18,7 +24,7 @@ class NoteEditor extends Component {
   render() {
     const {handleEditSave, handleCancelEdit} = this.props
     return (
-      <form className="note-editor">
+      <form className="note-editor" >
         <input type="text" name="title" value = {this.state.title} onChange = {this.handleEdit}/>
         <textarea name="body" value = {this.state.body} onChange = {this.handleEdit}/>
         <div className="button-row">
