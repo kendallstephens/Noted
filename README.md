@@ -1,12 +1,40 @@
-README: React Frontend
-======================
+# Noted
+ 
+ An application to create and keep track of your notes. 
+ 
+ Functionality includes editing, deleting and searching for past notes by title.
 
-## Setup
+## Languages and Frameworks
 
-```sh
-# from within this directory:
-npm install
-PORT=4000 npm start
-```
+### Client
+* React.js 
+* CSS
 
-This React app will be running on `http://localhost:4000`.
+### Server
+* Ruby ob Rails API 
+
+## Installation
+
+Once you have forked and cloned this repo run the following commands in the terminal,
+
+### Server
+
+* cd backend
+
+* bundle install
+
+* rails db:migrate
+
+* rails s
+
+### Client
+
+* cd frontend
+
+* npm install
+
+* npm start
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
